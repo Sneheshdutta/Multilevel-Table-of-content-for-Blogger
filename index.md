@@ -1,8 +1,6 @@
-## Welcome to GitHub Pages
+## Welcome to Multilevel-Table-of-content-for-Blogger
 
-You can use the [editor on GitHub](https://github.com/Sneheshdutta/Multilevel-Table-of-content-for-Blogger/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+You can use the [Multilevel-Table-of-content-for-Blogger](https://github.com/Sneheshdutta/Multilevel-Table-of-content-for-Blogger) to enable multilabletable of content on your blogger site. 
 
 ### Markdown
 
@@ -11,27 +9,108 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 ```markdown
 Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+# Copy and Paste above </head> tag in your HTML Code of Blogger
+```markdown
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'/>
+<script type='text/javascript'> 
+//<![CDATA[ 
+function mbtTOC2(){var a=1,b=0,c="";document.getElementById("post-toc").innerHTML=document.getElementById("post-toc").innerHTML.replace(/<h([\d]).*?>(.*?)<\/h([\d]).*?>/gi,function(d,e,f,g){return e!=g?d:(e>a?c+=new Array(e-a+1).join("<ol class='point"+a+"'>"):e<a&&(c+=new Array(a-e+1).join("</ol></li>")),b+=1,c+='<li><a href="#point'+b+'">'+f+"</a>",a=parseInt(e),"<h"+e+" id='point"+b+"'>"+f+"</h"+g+">")}),a&&(c+=new Array(a+1).join("</ol>")),document.getElementById("mbtTOC2").innerHTML+=c}function mbtToggle2(){var a=document.getElementById("mbtTOC2"),b=document.getElementById("Tog");"none"===a.style.display?(a.style.display="block",b.innerHTML="hide"):(a.style.display="none",b.innerHTML="show")} 
+//]]> 
+</script>
+  
+## Next search ]]></b:skin> and just above it paste the following CSS code:
+```markdown
+.mbtTOC2{
+border:5px solid #0008FC ;
+border-radius: 10px 50px 10px 50px;
+box-shadow:5px 5px 5px 5px grey;
+border-style:dashed;
+background-color:#ACDEFB;
+color:#707037;
+line-height:1.4em;
+margin:30px auto;
+padding:20px 30px 20px 10px;
+ font-family:Oswald, arial;
+ display: block;width: 70%;
+ }
+ 
+ .mbtTOC2 button{
+ background:#ACDEFB;
+ font-family:oswald, arial; font-size:22px;
+ position:relative;
+ outline:none;
+ border:none;
+ color:#2E2E2E;
+ padding:0 0 0 15px;
+ }
+ 
+ .mbtTOC2 button a {
+ color:#FF0313;
+ padding:0px 2px;
+ cursor:pointer;
+ } 
+ 
+.mbtTOC2 button a:hover{
+ text-decoration:underline; 
+ } 
+ 
+.mbtTOC2 button span {
+font-size:15px; margin:0px 10px;
+ }
 
-- Bulleted
-- List
+.mbtTOC2 li{margin:10px 0;  } 
 
-1. Numbered
-2. List
+.mbtTOC2 li a {
+color:#EA1414;
+ text-decoration:none;
+ font-size:18px;
+ text-transform:capitalize;
+ } 
+ 
+.mbtTOC2 li a:hover {
+text-decoration: underline;
+}
+.mbtTOC2 li li {margin:4px 0px;}
+ 
+.mbtTOC2 li li a{
+ color:#040404;
+ font-size:15px;
+ }
 
-**Bold** and _Italic_ and `Code` text
+
+.mbtTOC2 ol{counter-reset:section1;list-style:none}
+.mbtTOC2 ol ol{counter-reset:section2}
+.mbtTOC2 ol ol ol{counter-reset:section3}
+.mbtTOC2 ol ol ol ol{counter-reset:section4}
+.mbtTOC2 ol ol ol ol ol{counter-reset:section5}
+.mbtTOC2 li:before{content:counter(section1);counter-increment:section1;position:relative;padding:0 8px 0 0;font-size:18px}
+.mbtTOC2 li li:before{content:counter(section1) "." counter(section2);counter-increment:section2;font-size:14px}
+.mbtTOC2 li li li:before{content:counter(section1) "."counter(section2) "." counter(section3);counter-increment:section3}
+.mbtTOC2 li li li li:before{content:counter(section1) "."counter(section2) "."counter(section3) "." counter(section4);counter-increment:section4}
+.mbtTOC2 li li li li li:before{content:counter(section1) "."counter(section2) "."counter(section3) "." counter(section4)"." counter(section5);counter-increment:section5}
+/* 
+.point2 {list-style-type:lower-alpha} 
+.point3 {list-style-type:lower-roman} 
+.point4 {list-style-type:disc} 
+*/
+
+## Finally search for <data:post.body/> and replace it with the code below:
+```markdown
+<div id="post-toc"><data:post.body/></div>
+
+## It is best to display TOC right after your starting paragraph or show it before the first heading on your blog post.
+
+To do this, switch to "HTML" mode of blogger editor and then paste the following HTML code just before the first heading.
+```markdown
+<div class="mbtTOC2"> 
+<button>Contents <span>[<a onclick="mbtToggle2()"  id="Tog">hide</a>]</span></button> 
+<div id="mbtTOC2"></div> 
+</div>
+
+## Paste this code in the Html view of your post in the last.
+```markdown
+<script>mbtTOC2();</script>
 
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Sneheshdutta/Multilevel-Table-of-content-for-Blogger/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
